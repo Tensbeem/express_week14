@@ -2,11 +2,16 @@ const express = require('express') //express
 const http = require('http') //node.js
 const morgan = require('morgan')
 const app = express()
+const PORT = process.env.PORT || 4000
 
 const sever = http.createServer(app)
-const PORT = process.env.PORT || 4000
 app.use(morgan('dev'))
 app.use(express.json())
+
+const myLogger = function(req,res,next){
+    console.log('LOGGED')
+    next()
+}
 
 //register route
 //GET:http://localhost:4000
